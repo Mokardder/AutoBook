@@ -1,10 +1,6 @@
-░▒▓█►─═ 𝔸𝕦𝕥𝕠 𝔹𝕠𝕠𝕜 𝕓𝕪 𝕄𝕠𝕜𝕒𝕣𝕕𝕕𝕖𝕣 ═─◄█▓▒░
+★彡[ᴀᴜᴛᴏʙᴏᴏᴋ ʙʏ ᴍᴏᴋᴀʀᴅᴅᴇʀ]彡★
 [15/08/2022] 
-└─► #Released: The Script Released
-Test
-Test
-Test
-Test
-Test
-Test
-Test
+└► #Released: The Script Released
+└──►#Fixed: Some Thing Fixed.
+[30/08/2022]
+└► #Added: Auto Update Has Been Integreted
