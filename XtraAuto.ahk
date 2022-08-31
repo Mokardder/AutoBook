@@ -47,7 +47,7 @@ if (OutputVarNew > OutputVarOld){
 	return
 }
 else{
-	MsgBox, No new version available
+	Gosub, StartHere
 	return
 }
 
@@ -71,7 +71,7 @@ return
 ;================================ End Here =======================
 
 
-
+StartHere:
 
 Msgbox, !!!!Severe Maintenance Server Down!!!!
 ExitApp
