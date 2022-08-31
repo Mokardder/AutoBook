@@ -1,7 +1,11 @@
-★彡[ᴀᴜᴛᴏʙᴏᴏᴋ ʙʏ ᴍᴏᴋᴀʀᴅᴅᴇʀ]彡★
+★彡[ᴀᴜᴛᴏʙᴏᴏᴋ ʙʏ ᴍᴏᴋᴀʀᴅᴅᴇʀ]彡★ └► 
+
+[30/08/2020]
+#Added: Auto Update Function Has been added. Now no need to download and use script manually
+#Fixed: Fixed Some Bugs
 
 [15/08/2022] 
-└► #Released: The Script Released
-└► #Fixed: Some Thing Fixed.
-└► #Added: Developer Mokardder
-└► #Added: Helper Moktader Hossain
+#Released: The Script Released
+#Fixed: Some Thing Fixed.
+#Added: Developer Mokardder
+#Added: Helper Moktader Hossain
