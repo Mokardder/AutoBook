@@ -2,10 +2,8 @@
 
 [30/08/2020] [v1.1]
 #Added: Auto Update Function Has been added. Now no need to download and use script manually
+#Added: Auto Update Gui Added
 #Fixed: Fixed Some Bugs
 
 [15/08/2022] [v1.0]
 #Released: The Script Released
-#Fixed: Some Thing Fixed.
-#Added: Developer Mokardder
-#Added: Helper Moktader Hossain
