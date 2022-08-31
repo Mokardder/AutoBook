@@ -2,65 +2,6 @@
 
 [15/08/2022] 
 └► #Released: The Script Released
-└──►#Fixed: Some Thing Fixed.
-
-[30/08/2022]
-└► #Added: Auto Update Has Been Integreted
-[15/08/2022] 
-└► #Released: The Script Released
-└──►#Fixed: Some Thing Fixed.
-
-[30/08/2022]
-└► #Added: Auto Update Has Been Integreted
-[15/08/2022] 
-└► #Released: The Script Released
-└──►#Fixed: Some Thing Fixed.
-
-[30/08/2022]
-└► #Added: Auto Update Has Been Integreted
-[15/08/2022] 
-└► #Released: The Script Released
-└──►#Fixed: Some Thing Fixed.
-
-[30/08/2022]
-└► #Added: Auto Update Has Been Integreted[15/08/2022] 
-└► #Released: The Script Released
-└──►#Fixed: Some Thing Fixed.
-
-[30/08/2022]
-└► #Added: Auto Update Has Been Integreted[15/08/2022] 
-└► #Released: The Script Released
-└──►#Fixed: Some Thing Fixed.
-
-[30/08/2022]
-└► #Added: Auto Update Has Been Integreted[15/08/2022] 
-└► #Released: The Script Released
-└──►#Fixed: Some Thing Fixed.
-
-[30/08/2022]
-└► #Added: Auto Update Has Been Integreted[15/08/2022] 
-└► #Released: The Script Released
-└──►#Fixed: Some Thing Fixed.
-
-[30/08/2022]
-└► #Added: Auto Update Has Been Integreted[15/08/2022] 
-└► #Released: The Script Released
-└──►#Fixed: Some Thing Fixed.
-
-[30/08/2022]
-└► #Added: Auto Update Has Been Integreted[15/08/2022] 
-└► #Released: The Script Released
-└──►#Fixed: Some Thing Fixed.
-
-[30/08/2022]
-└► #Added: Auto Update Has Been Integreted[15/08/2022] 
-└► #Released: The Script Released
-└──►#Fixed: Some Thing Fixed.
-
-[30/08/2022]
-└► #Added: Auto Update Has Been Integreted[15/08/2022] 
-└► #Released: The Script Released
-└──►#Fixed: Some Thing Fixed.
-
-[30/08/2022]
-└► #Added: Auto Update Has Been Integreted
+└► #Fixed: Some Thing Fixed.
+└► #Added: Developer Mokardder
+└► #Added: Helper Moktader Hossain
