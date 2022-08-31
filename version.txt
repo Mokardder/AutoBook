@@ -1,0 +1,36 @@
+┌────────────────────────────────────────┐
+│                                        │
+│                                        │
+│         Auto Book by Mokardder         │
+│               Unreleased               │
+│                                        │
+│                                        │
+│                                        │
+└────────────────────────────────────────┘
+
+┌────────────┐
+│  About :   │
+└────────────┘
+          Auto Book XR Version by Mokardder. This Tool only works with Xtra Reward profile. 
+          For More Queries you may contact @Mokardder
+        
+          
+          
+          
+                                               ┌─────────────────────┐
+                                               │     Change Logs :   │
+                                               └─────────────────────┘
+
+┌────────┐ ┌────────────┐
+│ V 1.0  ├─┤ 15/08/2022 │
+└───┬────┘ └────────────┘
+    │
+    └──► First Ever Released by Mokardder
+                                               
+┌────────┐ ┌────────────┐
+│ V 1.1  ├─┤ 30/08/2022 │
+└───┬────┘ └────────────┘
+    │
+    └──► #Fixed : Waiting time for clicking back button, Refill Order After 15 Days  
+    │
+    └──► #Added : A log book added, it will write which number is booked, and which is not                             
