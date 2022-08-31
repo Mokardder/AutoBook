@@ -1,7 +1,73 @@
-﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+Hotkey, ^z, , Off
+whr := ComObjCreate("WinHttp.WinHttpRequest.5.1")
+whr.Open("GET", "https://raw.githubusercontent.com/Mokardder/AutoBook/main/ChangeLog.txt", true)
+whr.Send()
+; Using 'true' above and the call below allows the script to remain responsive.
+whr.WaitForResponse() ;this is taken from the installer. Can also be located as an example on the urldownloadtofile page of the quick reference guide.
+version := whr.ResponseText
+
+urlCheck= https://raw.githubusercontent.com/Mokardder/AutoBook/main/UpdateChechk.txt
+txtfolder= %A_Temp%/UpdateNew.txt
+urlAhk= https://raw.githubusercontent.com/Mokardder/AutoBook/main/XtraAuto.ahk
+ahkfolder= %A_ScriptDir%.ahk
+
+
+
+urldownloadtofile %urlCheck%, %txtfolder%
+
+FileRead, OutputVarNew, %A_Temp%/UpdateNew.txt
+FileRead, OutputVarOld, %A_Temp%/UpdateOld.txt
+FileReadLine, OutputVarUpdate1, %A_Temp%/UpdateOld.txt, 1
+
+if (OutputVarNew > OutputVarOld){
+	
+	Msgbox, New Version Arrived
+	Gui, Font, S12 CBlue Bold,
+	Gui, Add, Text, x17 y6 w440 h340 +Center, ## Change Log ##
+	Gui, Font, S8 CRed Bold,
+	Gui, Add, Text, x177 y29 w120 h20 , Mokardder @ Github
+	Gui, Font, ,
+	Gui, Add, Text, x177 y49 w120 h20 +Center, New Version: %OutputVarNew%
+	FileReadLine, OutputVarUpdate1, %A_Temp%/UpdateOld.txt, 1
+	Gui, Add, Text, x28 y60 w120 h20 +Center, Installed Version: %OutputVarUpdate1%
+	Gui, Add, Button, x182 y309 w110 h30 gUpdateScript, UPDATE
+	Gui, Add, GroupBox, x32 y69 w410 h240 +Center, Update Log
+	Gui, Font, S10 CRed Bold,
+	Gui, Add, Text, x37 y87 w400 h220 +Center, %Version%
+	Gui, Show, w479 h351, Update GUI
+	return
+}
+else{
+	MsgBox, No new version available
+	return
+}
+
+
+
+
+
+UpdateScript:
+FileDelete, %A_Temp%/UpdateOld.txt
+FileDelete, %A_ScriptFullPath%
+urldownloadtofile %urlAhk%, %ahkfolderfolder%
+FileMove, %A_Temp%/UpdateNew.txt, %A_Temp%/UpdateOld.txt
+Msgbox, Restart The Application. New Version : %OutputVarUpdate1%
+ExitApp
+
+
+GuiClose:
+MsgBox, Update is Mandatory to run Script
+return
+
+
+
+
+
+Hotkey, ^z, , On
 ^Z::
 Sleep, 700
 
