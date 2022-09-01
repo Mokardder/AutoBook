@@ -75,10 +75,11 @@ return
 ;================================ End Here =======================
 
 
-Msgbox, This Message Updated
+
 
 
 StartHere:
+Msgbox, This Message Updated
 
 Hotkey, ^z, , On
 ^Z::
