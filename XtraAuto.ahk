@@ -28,7 +28,7 @@ FileReadLine, NewMessage, %A_Temp%/UpdateNew.txt, 2
 
 rawAhk:= A_ScriptFullPath
 SplitPath, rawAhk,,,,no_ext_file
-ahkfolder= %A_ScriptDir%/%no_ext_file%%NewVersion%.ahk
+ahkfolder= %A_ScriptDir%/%no_ext_file%.ahk
 
 
 
