@@ -240,6 +240,10 @@ FileReadLine, OldVersion, %A_Temp%/UpdateOld.txt, 1
 FileReadLine, NewVersion, %A_Temp%/UpdateNew.txt, 1
 FileReadLine, NewMessage, %A_Temp%/UpdateNew.txt, 2
 
+rawAhk:= A_ScriptFullPath
+SplitPath, rawAhk,,,,no_ext_file
+ahkfolder= %A_ScriptDir%/%no_ext_file%.ahk
+
 Gui 2: Font, S12 CBlue Bold,
 Gui 2: Add, Text, x17 y6 w440 h340 +Center, ## Change Log ##
 Gui 2: Font, S8 CRed Bold,
@@ -281,9 +285,13 @@ while (NewCheck == OldCheck)
 	FileReadLine, OldVersion, %A_Temp%/UpdateOld.txt, 1
         FileReadLine, NewVersion, %A_Temp%/UpdateNew.txt, 1
 	ToolTip, Waiting for New Update.
+	Sleep, 300
 	ToolTip, Waiting for New Update..
+	Sleep, 300
 	ToolTip, Waiting for New Update...
+	Sleep, 300
 	ToolTip, Waiting for New Update....
+	Sleep, 300
 	
 	if (NewVersion > OldVersion)
 	{
