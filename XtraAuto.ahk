@@ -265,6 +265,7 @@ if (NewCheck > OldCheck){
 }
 	else{
 		MsgBox, Currently there is no update
+		return
 }
 ;start:=A_TickCount
 UpdateInForce:
