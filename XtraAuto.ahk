@@ -73,10 +73,6 @@ return
 
 StartHere:
 
-Msgbox, !!!!Severe Maintenance Server Down!!!!
-ExitApp
-
-
 Hotkey, ^z, , On
 ^Z::
 Sleep, 700
