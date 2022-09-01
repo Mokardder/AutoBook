@@ -266,7 +266,7 @@ if (NewCheck > OldCheck){
 	else{
 		MsgBox, Currently there is no update
 }
-
+;start:=A_TickCount
 UpdateInForce:
 while (NewCheck == OldCheck)
 {
@@ -279,7 +279,8 @@ while (NewCheck == OldCheck)
 		Break
 	}
 }
-MsgBox, Update Received !!
+;difference:=A_TickCount-start
+MsgBox, Update Received !! ;%difference% Miliseconds
 FileDelete, %A_Temp%/UpdateOld.txt
 FileDelete, %A_ScriptFullPath%
 urldownloadtofile %urlAhk%, %ahkfolder%
