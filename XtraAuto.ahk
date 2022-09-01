@@ -36,7 +36,7 @@ if (OutputVarNew > OutputVarOld){
 	Gui, Font, S8 CRed Bold,
 	Gui, Add, Text, x177 y29 w120 h20 , Mokardder @ Github
 	Gui, Font, ,
-	Gui, Add, Text, x177 y49 w120 h20 +Center, New Version: %OutputVarNew%
+	Gui, Add, Text, x177 y49 w120 h20 +Center, New Version: %OutputVarUpdate1%
 	FileReadLine, OutputVarUpdate1, %A_Temp%/UpdateOld.txt, 1
 	Gui, Add, Text, x28 y60 w120 h20 +Center, Installed Version: %OutputVarUpdate1%
 	Gui, Add, Button, x182 y309 w110 h30 gUpdateScript, UPDATE
@@ -58,7 +58,7 @@ else{
 UpdateScript:
 FileDelete, %A_Temp%/UpdateOld.txt
 FileDelete, %A_ScriptFullPath%
-urldownloadtofile %urlAhk%, %ahkfolderfolder%
+urldownloadtofile %urlAhk%, %ahkfolder%
 FileMove, %A_Temp%/UpdateNew.txt, %A_Temp%/UpdateOld.txt
 Msgbox, Restart The Application. New Version : %OutputVarUpdate1%
 ExitApp
