@@ -243,17 +243,18 @@ Gui 2: Font, ,
 Gui 2: Add, Text, x95 y49 w250 h20 +Center, Latest: %NewVersion%
 FileReadLine, OutputVarUpdate1, %A_Temp%/UpdateOld.txt, 1
 Gui 2: Add, Text, x28 y60 w120 h20 +Center, Installed Version: %OldVersion%
-Gui 2: Add, Button, x182 y309 w110 h30 gUpdateScriptin, UPDATE
+Gui 2: Add, Button, x110 y309 w110 h30 gUpdateIn, UPDATE
+Gui 2: Add, Button, x250 y309 w110 h30 gUpdateInForce, Force Update
 Gui 2: Add, Text, x115 y338 w250 h20 +Center, Don't Download if both version are same
 Gui 2: Add, GroupBox, x32 y69 w410 h240 +Center, Update Log
 Gui 2: Font, S10 CRed Bold,
 Gui 2: Add, Text, x37 y87 w400 h220 +Center, %Version%
 Gui 2: Show, w479 h351, Update GUI
-return
 
 
 
-UpdateScriptin:
+
+Updatein:
 if (NewCheck > OldCheck){
 	FileDelete, %A_Temp%/UpdateOld.txt
 	FileDelete, %A_ScriptFullPath%
@@ -264,9 +265,33 @@ if (NewCheck > OldCheck){
 }
 	else{
 		MsgBox, Currently there is no update
+}
+
+UpdateInForce:
+while (NewCheck == OldCheck)
+{
+	urldownloadtofile %urlCheck%, %txtfolder%
+	FileRead, NewCheck, %A_Temp%/UpdateNew.txt
+	FileRead, OldCheck, %A_Temp%/UpdateOld.txt
+	
+	if (NewCheck > OldCheck)
+	{
+		Break
 	}
-	
-	
-	Gui2Close:
-	Gui 2:Destroy
-	return
+}
+MsgBox, Update Received !!
+FileDelete, %A_Temp%/UpdateOld.txt
+FileDelete, %A_ScriptFullPath%
+urldownloadtofile %urlAhk%, %ahkfolder%
+FileMove, %A_Temp%/UpdateNew.txt, %A_Temp%/UpdateOld.txt
+Msgbox, Restart The Application. New Version : %NewVersion% `n %NewMessage%
+return
+
+
+
+
+
+
+Gui2Close:
+Gui 2:Destroy
+return
