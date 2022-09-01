@@ -36,7 +36,7 @@ if (NewCheck > OldChechk){
 	Gui, Font, S8 CRed Bold,
 	Gui, Add, Text, x177 y29 w120 h20 , Mokardder @ Github
 	Gui, Font, ,
-	Gui, Add, Text, x177 y49 w120 h20 +Center, New Version: %UpdateVersion% `n %UpdateMessage%
+	Gui, Add, Text, x177 y49 w120 h20 +Center, latest: %UpdateVersion% Don't Download if the both versions are same
 	FileReadLine, OutputVarUpdate1, %A_Temp%/UpdateOld.txt, 1
 	Gui, Add, Text, x28 y60 w120 h20 +Center, Installed Version: %OldVersion%
 	Gui, Add, Button, x182 y309 w110 h30 gUpdateScript, UPDATE
@@ -60,7 +60,7 @@ FileDelete, %A_Temp%/UpdateOld.txt
 FileDelete, %A_ScriptFullPath%
 urldownloadtofile %urlAhk%, %ahkfolder%
 FileMove, %A_Temp%/UpdateNew.txt, %A_Temp%/UpdateOld.txt
-Msgbox, Restart The Application. New Version : %OutputVarUpdate1%
+Msgbox, Restart The Application. New Version : %UpdatedVersion% `n %UpdatedMessage%
 ExitApp
 
 
