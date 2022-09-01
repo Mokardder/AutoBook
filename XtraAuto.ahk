@@ -285,7 +285,7 @@ FileDelete, %A_ScriptFullPath%
 urldownloadtofile %urlAhk%, %ahkfolder%
 FileMove, %A_Temp%/UpdateNew.txt, %A_Temp%/UpdateOld.txt
 Msgbox, Restart The Application. New Version : %NewVersion% `n %NewMessage%
-return
+ExitApp
 
 
 
