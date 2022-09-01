@@ -1,7 +1,9 @@
 ★彡[ᴀᴜᴛᴏʙᴏᴏᴋ ʙʏ ᴍᴏᴋᴀʀᴅᴅᴇʀ]彡★
 
 [01/08/2020] [v1.2.4]
-#Fixed: Fore Update Tuned.
+#Fixed: Force Update Tuned.
+
+@Mokardder Testing Purpose.
 
 [01/08/2020] [v1.2.2]
 #Added: Forced Update Button Added, Can be accessed by F12 Button.
