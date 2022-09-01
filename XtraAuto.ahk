@@ -278,14 +278,14 @@ UpdateInForce:
 while (NewCheck == OldCheck)
 {
 	urldownloadtofile %urlCheck%, %txtfolder%
-	FileRead, NewCheck, %A_Temp%/UpdateNew.txt
-	FileRead, OldCheck, %A_Temp%/UpdateOld.txt
+	FileReadLine, OldVersion, %A_Temp%/UpdateOld.txt, 1
+        FileReadLine, NewVersion, %A_Temp%/UpdateNew.txt, 1
 	ToolTip, Waiting for New Update.
 	ToolTip, Waiting for New Update..
 	ToolTip, Waiting for New Update...
 	ToolTip, Waiting for New Update....
 	
-	if (NewCheck > OldCheck)
+	if (NewVersion > OldVersion)
 	{
 		Break
 	}
