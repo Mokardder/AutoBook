@@ -1,6 +1,6 @@
 ★彡[ᴀᴜᴛᴏʙᴏᴏᴋ ʙʏ ᴍᴏᴋᴀʀᴅᴅᴇʀ]彡★
 
-[01/08/2020] [v1.2.6]
+[01/08/2020] [v1.2.7]
 #Fixed: Error Pops Up When Click on Update
 
 
