@@ -75,6 +75,9 @@ return
 ;================================ End Here =======================
 
 
+Msgbox, This Message Updated
+
+
 StartHere:
 
 Hotkey, ^z, , On
