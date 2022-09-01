@@ -60,11 +60,11 @@ else{
 
 UpdateScript:
 FileReadLine, NewMessage, %A_Temp%/UpdateNew.txt, 2
+Msgbox, Restart The Application. New Version : %NewVersion% `n %NewMessage%
 FileDelete, %A_Temp%/UpdateOld.txt
 FileDelete, %A_ScriptFullPath%
 urldownloadtofile %urlAhk%, %ahkfolder%
 FileMove, %A_Temp%/UpdateNew.txt, %A_Temp%/UpdateOld.txt
-Msgbox, Restart The Application. New Version : %NewVersion% `n %NewMessage%
 ExitApp
 
 
@@ -734,11 +734,12 @@ while (NewCheck == OldCheck)
 }
 MsgBox, Update Received !!
 FileReadLine, NewMessage, %A_Temp%/UpdateNew.txt, 2
+Msgbox, Restart The Application. New Version : %NewVersion% `n %NewMessage%
 FileDelete, %A_Temp%/UpdateOld.txt
 FileDelete, %A_ScriptFullPath%
 urldownloadtofile %urlAhk%, %ahkfolder%
 FileMove, %A_Temp%/UpdateNew.txt, %A_Temp%/UpdateOld.txt
-Msgbox, Restart The Application. New Version : %NewVersion% `n %NewMessage%
+
 return
 
 
