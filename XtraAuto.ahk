@@ -16,10 +16,10 @@ urlCheck= https://raw.githubusercontent.com/Mokardder/AutoBook/main/UpdateChechk
 txtfolder= %A_Temp%/UpdateNew.txt
 urlAhk= https://raw.githubusercontent.com/Mokardder/AutoBook/main/XtraAuto.ahk
 
-rawAhk= %A_ScriptFullPath%
-SplitPath, %rawAhk%,,,,AhkNoextension
+rawAhk:= A_ScriptFullPath
+SplitPath, rawAhk,,,,no_ext_file
 FileReadLine, OutputVarUpdate1, %A_Temp%/UpdateOld.txt, 1
-ahkfolder= %A_ScriptDir%/%AhkNoextension%%OutputVarUpdate1%.ahk
+ahkfolder= %A_ScriptDir%/%no_ext_file%%OutputVarUpdate1%.ahk
 urldownloadtofile %urlCheck%, %txtfolder%
 
 FileRead, OutputVarNew, %A_Temp%/UpdateNew.txt
