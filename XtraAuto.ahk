@@ -223,12 +223,17 @@ HERE:
 return
 
 F12::
-rawAhk:= A_ScriptFullPath
-SplitPath, rawAhk,,,,no_ext_file
-FileReadLine, OutputVarUpdate1, %A_Temp%/UpdateOld.txt, 1
-ahkfolder= %A_ScriptDir%/%no_ext_file%%OutputVarUpdate1%.ahk
-urldownloadtofile %urlCheck%, %txtfolder%
+whr := ComObjCreate("WinHttp.WinHttpRequest.5.1")
+whr.Open("GET", "https://raw.githubusercontent.com/Mokardder/AutoBook/main/ChangeLog.txt", true)
+whr.Send()
+; Using 'true' above and the call below allows the script to remain responsive.
+whr.WaitForResponse() ;this is taken from the installer. Can also be located as an example on the urldownloadtofile page of the quick reference guide.
+version := whr.ResponseText
 
+urlCheck= https://raw.githubusercontent.com/Mokardder/AutoBook/main/UpdateChechk.txt
+txtfolder= %A_Temp%/UpdateNew.txt
+urlAhk= https://raw.githubusercontent.com/Mokardder/AutoBook/main/XtraAuto.ahk
+urldownloadtofile %urlCheck%, %txtfolder%
 FileRead, NewCheck, %A_Temp%/UpdateNew.txt
 FileRead, OldCheck, %A_Temp%/UpdateOld.txt
 FileReadLine, OldVersion, %A_Temp%/UpdateOld.txt, 1
@@ -250,6 +255,7 @@ Gui 2: Add, GroupBox, x32 y69 w410 h240 +Center, Update Log
 Gui 2: Font, S10 CRed Bold,
 Gui 2: Add, Text, x37 y87 w400 h220 +Center, %Version%
 Gui 2: Show, w479 h351, Update GUI
+return
 
 
 
@@ -267,7 +273,7 @@ if (NewCheck > OldCheck){
 		MsgBox, Currently there is no update
 		return
 }
-;start:=A_TickCount
+
 UpdateInForce:
 while (NewCheck == OldCheck)
 {
@@ -280,14 +286,13 @@ while (NewCheck == OldCheck)
 		Break
 	}
 }
-;difference:=A_TickCount-start
-MsgBox, Update Received !! ;%difference% Miliseconds
+MsgBox, Update Received !!
 FileDelete, %A_Temp%/UpdateOld.txt
 FileDelete, %A_ScriptFullPath%
 urldownloadtofile %urlAhk%, %ahkfolder%
 FileMove, %A_Temp%/UpdateNew.txt, %A_Temp%/UpdateOld.txt
 Msgbox, Restart The Application. New Version : %NewVersion% `n %NewMessage%
-ExitApp
+return
 
 
 
