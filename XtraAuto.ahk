@@ -59,6 +59,7 @@ else{
 
 
 UpdateScript:
+FileReadLine, NewMessage, %A_Temp%/UpdateNew.txt, 2
 FileDelete, %A_Temp%/UpdateOld.txt
 FileDelete, %A_ScriptFullPath%
 urldownloadtofile %urlAhk%, %ahkfolder%
@@ -303,6 +304,7 @@ while (NewCheck == OldCheck)
 	}
 }
 MsgBox, Update Received !!
+FileReadLine, NewMessage, %A_Temp%/UpdateNew.txt, 2
 FileDelete, %A_Temp%/UpdateOld.txt
 FileDelete, %A_ScriptFullPath%
 urldownloadtofile %urlAhk%, %ahkfolder%
