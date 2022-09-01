@@ -1,5 +1,9 @@
 ★彡[ᴀᴜᴛᴏʙᴏᴏᴋ ʙʏ ᴍᴏᴋᴀʀᴅᴅᴇʀ]彡★
 
+[01/08/2020] [v1.2]
+#Fixed: Auto Install fixed
+
+
 [30/08/2020] [v1.0]
 #Added: Auto Update Function Has been added. Now no need to download and use script manually
 #Added: Auto Update Gui Added
