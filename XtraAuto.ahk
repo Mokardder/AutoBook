@@ -22,11 +22,13 @@ FileReadLine, OutputVarUpdate1, %A_Temp%/UpdateOld.txt, 1
 ahkfolder= %A_ScriptDir%/%no_ext_file%%OutputVarUpdate1%.ahk
 urldownloadtofile %urlCheck%, %txtfolder%
 
-FileRead, OutputVarNew, %A_Temp%/UpdateNew.txt
-FileRead, OutputVarOld, %A_Temp%/UpdateOld.txt
-FileReadLine, OutputVarUpdate1, %A_Temp%/UpdateOld.txt, 1
+FileRead, NewCheck, %A_Temp%/UpdateNew.txt
+FileRead, OldChechk, %A_Temp%/UpdateOld.txt
+FileReadLine, OldVersion, %A_Temp%/UpdateOld.txt, 1
+FileReadLine, UpdateVersion, %A_Temp%/UpdateNew.txt, 1
+FileReadLine, UpdateMessage, %A_Temp%/UpdateNew.txt, 2
 
-if (OutputVarNew > OutputVarOld){
+if (NewCheck > OldChechk){
 	
 	Msgbox, New Version Arrived
 	Gui, Font, S12 CBlue Bold,
@@ -34,9 +36,9 @@ if (OutputVarNew > OutputVarOld){
 	Gui, Font, S8 CRed Bold,
 	Gui, Add, Text, x177 y29 w120 h20 , Mokardder @ Github
 	Gui, Font, ,
-	Gui, Add, Text, x177 y49 w120 h20 +Center, New Version: %OutputVarUpdate1%
+	Gui, Add, Text, x177 y49 w120 h20 +Center, New Version: %UpdateVersion% `n %UpdateMessage%
 	FileReadLine, OutputVarUpdate1, %A_Temp%/UpdateOld.txt, 1
-	Gui, Add, Text, x28 y60 w120 h20 +Center, Installed Version: %OutputVarUpdate1%
+	Gui, Add, Text, x28 y60 w120 h20 +Center, Installed Version: %OldVersion%
 	Gui, Add, Button, x182 y309 w110 h30 gUpdateScript, UPDATE
 	Gui, Add, GroupBox, x32 y69 w410 h240 +Center, Update Log
 	Gui, Font, S10 CRed Bold,
@@ -219,14 +221,21 @@ return
 
 
 F12::
+urldownloadtofile %urlCheck%, %txtfolder%
+FileRead, OutputVarNew, %A_Temp%/UpdateNew.txt
+FileRead, OutputVarOld, %A_Temp%/UpdateOld.txt
+FileReadLine, OldVersion, %A_Temp%/UpdateOld.txt, 1
+FileReadLine, UpdatedVersion, %A_Temp%/UpdateNew.txt, 1
+FileReadLine, UpdatedMessage, %A_Temp%/UpdateNew.txt, 2
+
 Gui 2: Font, S12 CBlue Bold,
 Gui 2: Add, Text, x17 y6 w440 h340 +Center, ## Change Log ##
 Gui 2: Font, S8 CRed Bold,
 Gui 2: Add, Text, x177 y29 w120 h20 , Mokardder @ Github
 Gui 2: Font, ,
-Gui 2: Add, Text, x177 y49 w120 h20 +Center, New Version: %OutputVarUpdate1%
+Gui 2: Add, Text, x177 y49 w120 h20 +Center, New Version: %UpdatedVersion%
 FileReadLine, OutputVarUpdate1, %A_Temp%/UpdateOld.txt, 1
-Gui 2: Add, Text, x28 y60 w120 h20 +Center, Installed Version: %OutputVarUpdate1%
+Gui 2: Add, Text, x28 y60 w120 h20 +Center, Installed Version: %OldVersion%
 Gui 2: Add, Button, x182 y309 w110 h30 gUpdateScriptin, UPDATE
 Gui 2: Add, GroupBox, x32 y69 w410 h240 +Center, Update Log
 Gui 2: Font, S10 CRed Bold,
@@ -235,17 +244,14 @@ Gui 2: Show, w479 h351, Update GUI
 return
 
 
-urldownloadtofile %urlCheck%, %txtfolder%
-FileRead, OutputVarNew, %A_Temp%/UpdateNew.txt
-FileRead, OutputVarOld, %A_Temp%/UpdateOld.txt
-FileReadLine, OutputVarUpdate1, %A_Temp%/UpdateOld.txt, 1
+
 UpdateScriptin:
 if (OutputVarNew > OutputVarOld){
 	FileDelete, %A_Temp%/UpdateOld.txt
 	FileDelete, %A_ScriptFullPath%
 	urldownloadtofile %urlAhk%, %ahkfolder%
 	FileMove, %A_Temp%/UpdateNew.txt, %A_Temp%/UpdateOld.txt
-	Msgbox, Restart The Application. New Version : %OutputVarUpdate1%
+	Msgbox, Restart The Application. New Version : %UpdatedVersion%`n %UpdatedMessage%
 	return
 	}
 	else{
