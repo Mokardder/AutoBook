@@ -1,8 +1,10 @@
 ★彡[ᴀᴜᴛᴏʙᴏᴏᴋ ʙʏ ᴍᴏᴋᴀʀᴅᴅᴇʀ]彡★
 
+[01/08/2020] [v1.2.2]
+#Added: Forced Update Button Added, Can be accessed by F12 Button.
+
 [01/08/2020] [v1.2]
 #Fixed: Auto Install fixed
-
 
 [30/08/2020] [v1.0]
 #Added: Auto Update Function Has been added. Now no need to download and use script manually
