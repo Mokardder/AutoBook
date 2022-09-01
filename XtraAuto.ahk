@@ -1,8 +1,5 @@
 ;===============================  Don't Mess This Line From 1 to 70 ========================
 
-
-
-
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
@@ -18,10 +15,11 @@ version := whr.ResponseText
 urlCheck= https://raw.githubusercontent.com/Mokardder/AutoBook/main/UpdateChechk.txt
 txtfolder= %A_Temp%/UpdateNew.txt
 urlAhk= https://raw.githubusercontent.com/Mokardder/AutoBook/main/XtraAuto.ahk
-ahkfolder= %A_ScriptDir%.ahk
 
-
-
+rawAhk= %A_ScriptFullPath%
+SplitPath, %rawAhk%,,,,AhkNoextension
+FileReadLine, OutputVarUpdate1, %A_Temp%/UpdateOld.txt, 1
+ahkfolder= %A_ScriptDir%/%AhkNoextension%%OutputVarUpdate1%.ahk
 urldownloadtofile %urlCheck%, %txtfolder%
 
 FileRead, OutputVarNew, %A_Temp%/UpdateNew.txt
@@ -67,6 +65,7 @@ ExitApp
 GuiClose:
 MsgBox, Update is Mandatory to run Script
 return
+
 
 ;================================ End Here =======================
 
