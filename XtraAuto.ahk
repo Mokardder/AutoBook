@@ -1,9 +1,12 @@
 ;===============================  Don't Mess This Line From 1 to 70 ========================
 
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-; #Warn  ; Enable warnings to assist with detecting common errors.
+#Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+
+
+
 Hotkey, ^z, , Off
 whr := ComObjCreate("WinHttp.WinHttpRequest.5.1")
 whr.Open("GET", "https://raw.githubusercontent.com/Mokardder/AutoBook/main/ChangeLog.txt", true)
@@ -15,20 +18,21 @@ version := whr.ResponseText
 urlCheck= https://raw.githubusercontent.com/Mokardder/AutoBook/main/UpdateChechk.txt
 txtfolder= %A_Temp%/UpdateNew.txt
 urlAhk= https://raw.githubusercontent.com/Mokardder/AutoBook/main/XtraAuto.ahk
+urldownloadtofile %urlCheck%, %txtfolder%
+FileRead, NewCheck, %A_Temp%/UpdateNew.txt
+FileRead, OldCheck, %A_Temp%/UpdateOld.txt
+FileReadLine, OldVersion, %A_Temp%/UpdateOld.txt, 1
+FileReadLine, NewVersion, %A_Temp%/UpdateNew.txt, 1
+FileReadLine, NewMessage, %A_Temp%/UpdateNew.txt, 2
+
 
 rawAhk:= A_ScriptFullPath
 SplitPath, rawAhk,,,,no_ext_file
-FileReadLine, OutputVarUpdate1, %A_Temp%/UpdateOld.txt, 1
-ahkfolder= %A_ScriptDir%/%no_ext_file%%OutputVarUpdate1%.ahk
-urldownloadtofile %urlCheck%, %txtfolder%
+ahkfolder= %A_ScriptDir%/%no_ext_file%%NewVersion%.ahk
 
-FileRead, NewCheck, %A_Temp%/UpdateNew.txt
-FileRead, OldChechk, %A_Temp%/UpdateOld.txt
-FileReadLine, OldVersion, %A_Temp%/UpdateOld.txt, 1
-FileReadLine, UpdateVersion, %A_Temp%/UpdateNew.txt, 1
-FileReadLine, UpdateMessage, %A_Temp%/UpdateNew.txt, 2
 
-if (NewCheck > OldChechk){
+
+if (NewCheck > OldCheck){
 	
 	Msgbox, New Version Arrived
 	Gui, Font, S12 CBlue Bold,
@@ -36,8 +40,7 @@ if (NewCheck > OldChechk){
 	Gui, Font, S8 CRed Bold,
 	Gui, Add, Text, x177 y29 w120 h20 , Mokardder @ Github
 	Gui, Font, ,
-	Gui, Add, Text, x177 y49 w120 h20 +Center, latest: %UpdateVersion% Don't Download if the both versions are same
-	FileReadLine, OutputVarUpdate1, %A_Temp%/UpdateOld.txt, 1
+	Gui, Add, Text, x177 y49 w120 h20 +Center, New Version: %NewVersion%
 	Gui, Add, Text, x28 y60 w120 h20 +Center, Installed Version: %OldVersion%
 	Gui, Add, Button, x182 y309 w110 h30 gUpdateScript, UPDATE
 	Gui, Add, GroupBox, x32 y69 w410 h240 +Center, Update Log
@@ -60,7 +63,7 @@ FileDelete, %A_Temp%/UpdateOld.txt
 FileDelete, %A_ScriptFullPath%
 urldownloadtofile %urlAhk%, %ahkfolder%
 FileMove, %A_Temp%/UpdateNew.txt, %A_Temp%/UpdateOld.txt
-Msgbox, Restart The Application. New Version : %UpdatedVersion% `n %UpdatedMessage%
+Msgbox, Restart The Application. New Version : %NewVersion% `n %NewMessage%
 ExitApp
 
 
@@ -219,24 +222,29 @@ HERE:
 }
 return
 
-
 F12::
+rawAhk:= A_ScriptFullPath
+SplitPath, rawAhk,,,,no_ext_file
+FileReadLine, OutputVarUpdate1, %A_Temp%/UpdateOld.txt, 1
+ahkfolder= %A_ScriptDir%/%no_ext_file%%OutputVarUpdate1%.ahk
 urldownloadtofile %urlCheck%, %txtfolder%
-FileRead, OutputVarNew, %A_Temp%/UpdateNew.txt
-FileRead, OutputVarOld, %A_Temp%/UpdateOld.txt
+
+FileRead, NewCheck, %A_Temp%/UpdateNew.txt
+FileRead, OldCheck, %A_Temp%/UpdateOld.txt
 FileReadLine, OldVersion, %A_Temp%/UpdateOld.txt, 1
-FileReadLine, UpdatedVersion, %A_Temp%/UpdateNew.txt, 1
-FileReadLine, UpdatedMessage, %A_Temp%/UpdateNew.txt, 2
+FileReadLine, NewVersion, %A_Temp%/UpdateNew.txt, 1
+FileReadLine, NewMessage, %A_Temp%/UpdateNew.txt, 2
 
 Gui 2: Font, S12 CBlue Bold,
 Gui 2: Add, Text, x17 y6 w440 h340 +Center, ## Change Log ##
 Gui 2: Font, S8 CRed Bold,
 Gui 2: Add, Text, x177 y29 w120 h20 , Mokardder @ Github
 Gui 2: Font, ,
-Gui 2: Add, Text, x177 y49 w120 h20 +Center, New Version: %UpdatedVersion%
+Gui 2: Add, Text, x95 y49 w250 h20 +Center, Latest: %NewVersion%
 FileReadLine, OutputVarUpdate1, %A_Temp%/UpdateOld.txt, 1
 Gui 2: Add, Text, x28 y60 w120 h20 +Center, Installed Version: %OldVersion%
 Gui 2: Add, Button, x182 y309 w110 h30 gUpdateScriptin, UPDATE
+Gui 2: Add, Text, x115 y338 w250 h20 +Center, Don't Download if both version are same
 Gui 2: Add, GroupBox, x32 y69 w410 h240 +Center, Update Log
 Gui 2: Font, S10 CRed Bold,
 Gui 2: Add, Text, x37 y87 w400 h220 +Center, %Version%
@@ -246,14 +254,14 @@ return
 
 
 UpdateScriptin:
-if (OutputVarNew > OutputVarOld){
+if (NewCheck > OldCheck){
 	FileDelete, %A_Temp%/UpdateOld.txt
 	FileDelete, %A_ScriptFullPath%
 	urldownloadtofile %urlAhk%, %ahkfolder%
 	FileMove, %A_Temp%/UpdateNew.txt, %A_Temp%/UpdateOld.txt
-	Msgbox, Restart The Application. New Version : %UpdatedVersion%`n %UpdatedMessage%
+	Msgbox, Restart The Application. New Version : %NewVersion% `n %NewMessage%
 	return
-	}
+}
 	else{
 		MsgBox, Currently there is no update
 	}
