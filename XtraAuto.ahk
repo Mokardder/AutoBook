@@ -280,6 +280,10 @@ while (NewCheck == OldCheck)
 	urldownloadtofile %urlCheck%, %txtfolder%
 	FileRead, NewCheck, %A_Temp%/UpdateNew.txt
 	FileRead, OldCheck, %A_Temp%/UpdateOld.txt
+	ToolTip, Waiting for New Update.
+	ToolTip, Waiting for New Update..
+	ToolTip, Waiting for New Update...
+	ToolTip, Waiting for New Update....
 	
 	if (NewCheck > OldCheck)
 	{
