@@ -1,6 +1,6 @@
 ;======================================
 
-
+Hotkey, ^z,, on
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ;#Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
@@ -83,7 +83,7 @@ Back:="|<>*190$23.zzzzzzzzzzzzzzzzzzzzwzzzlzzz7zzwTzzlzzz7zzw00zw01zwzzzwzzzwzzz
 
 
 Start:
-
+Hotkey, ^z,, off
 ^Z::
 Sleep, 700
 
