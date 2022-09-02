@@ -1,38 +1,27 @@
-;===============================  Don't Mess This Line From 1 to 70 ========================
+;======================================
+
 
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-#Warn  ; Enable warnings to assist with detecting common errors.
+;#Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-
-
-Hotkey, ^z, , Off
 whr := ComObjCreate("WinHttp.WinHttpRequest.5.1")
 whr.Open("GET", "https://raw.githubusercontent.com/Mokardder/AutoBook/main/ChangeLog.txt", true)
 whr.Send()
-; Using 'true' above and the call below allows the script to remain responsive.
-whr.WaitForResponse() ;this is taken from the installer. Can also be located as an example on the urldownloadtofile page of the quick reference guide.
+whr.WaitForResponse() 
 version := whr.ResponseText
 
-urlCheck= https://raw.githubusercontent.com/Mokardder/AutoBook/main/UpdateChechk.txt
-txtfolder= %A_Temp%/UpdateNew.txt
-urlAhk= https://raw.githubusercontent.com/Mokardder/AutoBook/main/XtraAuto.ahk
-urldownloadtofile %urlCheck%, %txtfolder%
-FileRead, NewCheck, %A_Temp%/UpdateNew.txt
-FileRead, OldCheck, %A_Temp%/UpdateOld.txt
-FileReadLine, OldVersion, %A_Temp%/UpdateOld.txt, 1
-FileReadLine, NewVersion, %A_Temp%/UpdateNew.txt, 1
-FileReadLine, NewMessage, %A_Temp%/UpdateNew.txt, 2
+url= https://raw.githubusercontent.com/Mokardder/AutoBook/main/UpdateChechk.txt
+File= %A_Temp%/UpdateNew.txt
 
+urldownloadtofile %url%, %file%
 
-rawAhk:= A_ScriptFullPath
-SplitPath, rawAhk,,,,no_ext_file
-ahkfolder= %A_ScriptDir%/%no_ext_file%.ahk
+FileRead, OutputVarNew, %A_Temp%/UpdateNew.txt
+FileRead, OutputVarOld, %A_Temp%/UpdateOld.txt
+FileReadLine, OutputVarUpdate1, %A_Temp%/UpdateOld.txt, 1
 
-
-
-if (NewCheck > OldCheck){
+if (OutputVarNew > OutputVarOld){
 	
 	Msgbox, New Version Arrived
 	Gui, Font, S12 CBlue Bold,
@@ -40,9 +29,11 @@ if (NewCheck > OldCheck){
 	Gui, Font, S8 CRed Bold,
 	Gui, Add, Text, x177 y29 w120 h20 , Mokardder @ Github
 	Gui, Font, ,
-	Gui, Add, Text, x177 y49 w120 h20 +Center, New Version: %NewVersion%
-	Gui, Add, Text, x28 y60 w120 h20 +Center, Installed Version: %OldVersion%
+	Gui, Add, Text, x177 y49 w120 h20 +Center, New Version: %OutputVarNew%
+	FileReadLine, OutputVarUpdate1, %A_Temp%/UpdateOld.txt, 1
+	Gui, Add, Text, x28 y60 w120 h20 +Center, Installed Version: %OutputVarUpdate1%
 	Gui, Add, Button, x182 y309 w110 h30 gUpdateScript, UPDATE
+	Gui, Add, Button, x350 y320 w50 h20 gUpdateLog, Full Log
 	Gui, Add, GroupBox, x32 y69 w410 h240 +Center, Update Log
 	Gui, Font, S10 CRed Bold,
 	Gui, Add, Text, x37 y87 w400 h220 +Center, %Version%
@@ -50,22 +41,20 @@ if (NewCheck > OldCheck){
 	return
 }
 else{
-	Gosub, StartHere
+	Gosub, Start
 	return
 }
 
-
-
-
-
 UpdateScript:
-FileReadLine, NewMessage, %A_Temp%/UpdateNew.txt, 2
-Msgbox, Restart The Application. New Version : %NewVersion% `n %NewMessage%
 FileDelete, %A_Temp%/UpdateOld.txt
-FileDelete, %A_ScriptFullPath%
-urldownloadtofile %urlAhk%, %ahkfolder%
 FileMove, %A_Temp%/UpdateNew.txt, %A_Temp%/UpdateOld.txt
+Msgbox, Restart The Application. New Version : %OutputVarUpdate1%
 ExitApp
+
+UpdateLog:
+Gui Log: Add, Edit, vscroll  +wrap h300 w300 +0x100 readonly, %Version%
+Gui Log: Show, w315 h300, Update GUI
+return
 
 
 GuiClose:
@@ -73,16 +62,8 @@ MsgBox, Update is Mandatory to run Script
 return
 
 
-;================================ End Here =======================
 
-
-
-
-
-#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-; #Warn  ; Enable warnings to assist with detecting common errors.
-SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
-SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+;====================================================================
 
 
 
@@ -101,7 +82,7 @@ LogOut_Pop:="|<LogOut_Pop>*217$47.UT3syAPz1aAn6MkW66kaAlV4ABUA9X28MPDMH64Ekq6kaA
 Back:="|<>*190$23.zzzzzzzzzzzzzzzzzzzzwzzzlzzz7zzwTzzlzzz7zzw00zw01zwzzzwzzzwzzzwzzzwzzzxzzzzzzzzzzzzzzzzzzzzzzzzz"
 
 
-
+Start:
 
 ^Z::
 Sleep, 700
@@ -566,7 +547,7 @@ Pic(comments, add_to_Lib=0) {
 	}
 }
 
-*/
+
 ;================= The End =================
 
 ;***********Custom functions by Joe Glines  http://the-automator.com*******************
@@ -653,9 +634,6 @@ FindText_Send_Text(Obj,Text,Enter=0,X_Adj=0,Y_Adj=0,Move_Back=0){
 
 
 
-
-
-;=================================================== Gui Update
 F12::
 whr := ComObjCreate("WinHttp.WinHttpRequest.5.1")
 whr.Open("GET", "https://raw.githubusercontent.com/Mokardder/AutoBook/main/ChangeLog.txt", true)
@@ -673,10 +651,6 @@ FileRead, OldCheck, %A_Temp%/UpdateOld.txt
 FileReadLine, OldVersion, %A_Temp%/UpdateOld.txt, 1
 FileReadLine, NewVersion, %A_Temp%/UpdateNew.txt, 1
 FileReadLine, NewMessage, %A_Temp%/UpdateNew.txt, 2
-
-rawAhk:= A_ScriptFullPath
-SplitPath, rawAhk,,,,no_ext_file
-ahkfolder= %A_ScriptDir%/%no_ext_file%.ahk
 
 Gui 2: Font, S12 CBlue Bold,
 Gui 2: Add, Text, x17 y6 w440 h340 +Center, ## Change Log ##
@@ -716,30 +690,24 @@ UpdateInForce:
 while (NewCheck == OldCheck)
 {
 	urldownloadtofile %urlCheck%, %txtfolder%
-	FileReadLine, OldVersion, %A_Temp%/UpdateOld.txt, 1
-        FileReadLine, NewVersion, %A_Temp%/UpdateNew.txt, 1
+	FileRead, NewCheck, %A_Temp%/UpdateNew.txt
+	FileRead, OldCheck, %A_Temp%/UpdateOld.txt
 	ToolTip, Waiting for New Update.
-	Sleep, 300
 	ToolTip, Waiting for New Update..
-	Sleep, 300
 	ToolTip, Waiting for New Update...
-	Sleep, 300
 	ToolTip, Waiting for New Update....
-	Sleep, 300
 	
-	if (NewVersion > OldVersion)
+	if (NewCheck > OldCheck)
 	{
 		Break
 	}
 }
 MsgBox, Update Received !!
-FileReadLine, NewMessage, %A_Temp%/UpdateNew.txt, 2
-Msgbox, Restart The Application. New Version : %NewVersion% `n %NewMessage%
 FileDelete, %A_Temp%/UpdateOld.txt
 FileDelete, %A_ScriptFullPath%
 urldownloadtofile %urlAhk%, %ahkfolder%
 FileMove, %A_Temp%/UpdateNew.txt, %A_Temp%/UpdateOld.txt
-
+Msgbox, Restart The Application. New Version : %NewVersion% `n %NewMessage%
 return
 
 
