@@ -1,6 +1,6 @@
 ★彡[ᴀᴜᴛᴏʙᴏᴏᴋ ʙʏ ᴍᴏᴋᴀʀᴅᴅᴇʀ]彡★
 
-[01/08/2020] [v2.0]
+[01/09/2022] [v2.0]
 #Exclusive: Find Text Function Added
 #Added: Super Fast Speed. No Delay
 #Misc: Check out by yourself
@@ -8,22 +8,22 @@
 @Mokardder
 
 
-[01/08/2020] [v1.2.7]
+[01/09/2022] [v1.2.7]
 #Fixed: Error Pops Up When Click on Update
 
 
-[01/08/2020] [v1.2.4]
+[01/09/2022] [v1.2.4]
 #Fixed: Force Update Tuned.
 
 @Mokardder Testing Purpose.
 
-[01/08/2020] [v1.2.2]
+[01/09/2022] [v1.2.2]
 #Added: Forced Update Button Added, Can be accessed by F12 Button.
 
-[01/08/2020] [v1.2]
+[01/09/2022] [v1.2]
 #Fixed: Auto Install fixed
 
-[30/08/2020] [v1.0]
+[30/08/2022] [v1.0]
 #Added: Auto Update Function Has been added. Now no need to download and use script manually
 #Added: Auto Update Gui Added
 #Fixed: Fixed Some Bugs
