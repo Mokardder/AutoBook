@@ -63,32 +63,54 @@ return
 
 
 
-;====================================================================
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+; #Warn  ; Enable warnings to assist with detecting common errors.
+SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+/*
+           DEVICE: LD Player
+		 Settings:
+		 {
+			Mode: Mobile
+			Resolution: 720x1280 (dpi 320)
+			CPU: 4 Cores
+			RAM: 2048M
+		}
+*/
 
-
-
-
-Enroll:="|<Enroll>*172$35.0M0030100020400020M00020UTzk63100U442010A85zu08U8040F0E080W0U0E141TyU2820104E40O08U80g0F0Lz80V0U2A12104864208k843zx0kA00q10800A608000M08001U080061"
-Log_In:="|<login>*216$38.kC1s6kw7sz1iT36MkPrklq06xwABb1jz33NkPTklaA6nwCNn1gzxwDkP7U"
-Mob:="|<Mob>*204$38.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzw000007000001k00000A000003000000k00000A000003000000k00000A000003000000k00000A000003000000k00000A000003000000s"
-Password:="|<>*220$54.y00000001n00000001V2210040/VBBaoHPCTn1cY6mFgny7a72eEcVU9VUmeEcVUNcYHAFcnUDjbn4D8TU"
-Login_Now:="|<Login Now>*189$69.DwTltbrtxwSty1s7AQz7C1nDXbCNXbstXaNwwnvAAz3AwnDbaTtYbsNbbNwwH3AYz9AwNDbaMNa7tVbb1wwnnAkzAAwsDXbCNb7tlXb061s3AwzCC1w0MTUtbbttsTY"
-Order_Cyl:="|<Order_Cyl>*199$21.7zz0zzs1kM06300kM06H00mM06H0DzzXzzys00y003k00S003k00S003zzzzzzzzzzzzzzzzzzzzzU"
-Order_Now:="|<Order Now>*214$71.7kyDs67zTT7q3UA3UA1wSQ3DbCNXDtnsQnaTaQnaTnbkt7aTAtb4zbDUmTAyM3D830T9YyNwkCQFy1yN9wntaQtbwnwsHtnbANnDtXtknbUCQkC0nbnlUD0wsUw1b7bnkyE"
-HomePage:="|<HomePage>*225$71.11UE6TXk00kS6DlkQzjsM7twAsnktUMNsMn0NVbXn0knkkq0n3D7a1VYX0ATa6P/DnzNaDT3AAqqM7wnASs6MNZgkA3zABUAknCNUM66MP0Mz6AnykAATrkkwANbxUkASDk"
-Tripple:="|<Tripple>*187$17.zzy00400Dzzzzzzzz00C00Tzzzzzk0TU0zzzzzzy"
-Log_Out:="|<Log Out>*202$23.00000000000000000003zU07y00A000M000k1U1U1U301U6TzUAzz0M0A0k0k1U3030006000A000Tw00000000000000001"
-LogOut_Pop:="|<LogOut_Pop>*217$47.UT3syAPz1aAn6MkW66kaAlV4ABUA9X28MPDMH64Ekq6kaA8UVaBXAMFxqCtgRUXtsDVkS14"
-Back:="|<>*190$23.zzzzzzzzzzzzzzzzzzzzwzzzlzzz7zzwTzzlzzz7zzw00zw01zwzzzwzzzwzzzwzzzwzzzxzzzzzzzzzzzzzzzzzzzzzzzzz"
-
-
-Start:
-Hotkey, ^z,, off
-^Z::
+Enroll:="|<Enroll>*156$47.001w7k0000C00s0001U00A0006000C000k00060030000600A0000600k0000601000006060000040M1zzw0A0U4004081080080M60E00E0E80jzwU0UE100101VU200201304004024080080480HzyE08E0U00U0EU100100V0201W0120402Y0260804s05"
+Log_In:="|<>*214$50.s3y3w0nky1zVzUAwDUQQsM3DXsC3C20nsy3Un00AzDUsAls3CvsC3AT0nay3UnVkAtzUMQsQ3CDs7j7D0nXzwzVzUAsTz7U7k363U"
+MobNO:="|<>*193$61.wzzzzzzzzxyDzzzzzzzyS7zzzzzzzzD9w7Uw7D823gwtbAtbYNnaQwbYwnmSNnaTnyT9tDAs3DtzDYwbaM1bwzbmSHnAyNnCNnC9tYzA3UQ1k4wkTn3sT3sKSwU"
+Password:="|<>*217$70.y0000000000Dy0000000000sM0000000003UlsC3l24C2ly3BliTYMFiDTsMV4NWNnAMVXzU4E61ZAUm4DkDlwD2oa38Es0V0sC/O8AV3U64EYAssUW4C0Mn6MlX368Ms0z7sy6A7kUzU"
+Login_Now:="|<>*194$52.zzXzlzzzwzs3w1wsz3z27VXnVwDwyCD7C7kzXslyQsD3yDn7znUQDtzATzC9kzbwlkQsX3yTn71nX4DszATbCC0zXslyQss3z7XXtnXk0A0T07CD00s3y0wsyDzxzzTzzzU"
+Order_Cyl:="|<>*168$27.3zzy0Tzzk0Q1k030600M0k030600M0k037600Msk037600Msk1zzzwTzzzr0007k000S0003k000S0003k000S0003k000S0003U"
+Order_Now:="|<>*217$59.s7k3k7k1U3U7U3U3U302D7DXD77yD4zCT6T6DwT1yAyAzATsy3wNwtyM1ls7sk1nwk1U2DlU7btXz0ATX6DDn7yAQzCSST6DwQMwQwQwQTswsltws0s0lss3nsk7k0Xtwzzzzzzzzy"
+Back:="|<>*194$19.zvzzszzszzszzszzszzszzszzs000002001XzzszzyDzzXzzszzyDzzXzzvzk"
+HomePage:="|<>*224$54.Ds3w0Tz7sSw7y0TyDyMCC701UQCsCQ301UM7s0Q301UM7s0Q3U1UM7syQ3U1Us7syQ3U1UM7sCQ301UM7sCQ301UM7MCC701UQCSSDS01UDSDw7w01U7w1U0k0001UU"
+Tripple:="|<>*192$21.00000000007zzzzzzzzzz000s007000zzzzzzzzzzz00Ds01z00Dw"
+Log_Out:="|<>*193$21.zy07zk0k006000k006000k06600sk03a00CnzzyTzzk01q00Qk07600kk006000k006000zy07zk0U"
+LogOut_Pop:="<>*214$62.k1s3s7kkPzw1z1z3yA6zz0Msklln1UkkA6A6MAkMAA31q063g6330kBU1Uv1UkkA3MyMCkMAA31qDa3g6330kRkNUn1UkkC6A6MAsMADtzXrXi7S33yDkTkTUz0kU"
+Opn_Ord:="|<>*222$38.Dk00007C00001Vk0000sAzVwTg3CMnbT0n7QNXkAkryMy3ABzaBUn3M1XQMlX4MnyDszaAS3Q3VX00k00000A0000030000U"
+Load_Scrn:="|<>*156$47.sDzzzzzzkDzwzzzzb7ztzzzzDDblszzyTQ33UzzwyHbCQzztwziTtzzntkQy3zzbnAtlbzzDAxnjDzySNnbSTzw1s360nAsDsbC9aRzzzzzzzzzzzzzzzzzzzzzzzs"
+Load:="|<>*195$60.DzzzynzzzzDzzzyvzzzzDzzzyzzzzzDsS7Un0kDzDnAnAnAnDzDbjvSnQbDzDba3SnQbDzDbYvSnQbDzDbgnQnQrDz0kA30nQkBa0sS/WvSsBazzzzzzzzDzzzzzzzzkTzzzzzzzzszzU"
+load2:="|<>*158$62.jzzzztrzzznzzzzyRzzzwzzzzzbzzzzDzDszdrNyznz0w7URkC0wzriQnbQtbDDttzBxrCPnnySQ2TRnYwwzbaQbrQtDDDttj9trCPnnySPnCRnaQw0kC0s7QtUAUC7lD5rSQ3jzzzzzzzzwzzzzzzzzzYTzzzzzzzzw7s"
+login2:="|<>*214$50.k1s3s0nUw0zVz0AsD0QMss3D3k63A60nsw30n00AyD0kAk03DnkA3AS0ngw30n7UAtj0sAkM3CTk67C60nXztzVnUAsTzDkDk3C7U"
+Session:="|<>*165$64.0000001U000000000600000000000000C0M1U710s4ly7sTVy67szwMkn34AMlnXkX3A8kFa3A7UAAM1U6MAkLkzkw3sNUH13X00Q1la3A43A00k36MAkQAkH3AAMkn1zVz7sTlXyA5w3kD0w63kkM"
+login2:="|<>*214$50.k1s3s0nUw0zVz0AsD0QMss3D3k63A60nsw30n00AyD0kAk03DnkA3AS0ngw30n7UAtj0sAkM3CTk67C60nXztzVnUAsTzDkDk3C7U"
 Sleep, 700
 
-FileSelectFile, list, 3, , Select a Booking List File (*.txt)
+FileSelectFile, list,,,,*.txt
+if(list = ""){
+	MsgBox, Select a File
+	return
+}
+FileRead, text, %list%
 
+
+if !RegExMatch(text, "[A-z]+\s[A-z]+:[0-9]+:@[A-z]+[0-9]+:"){
+	MsgBox, Please use this format like this  👉🏻 " MOKARDDER HOSSAIN:9932896502:@Admin123: "
+	ExitApp
+}
 
 FormatTime, sDated,, dd/MM/yyyy
 SplitPath, list, name
@@ -100,8 +122,8 @@ count += 1
 FileRead, Input, %list%
 
 Input:= StrSplit(input,"`n")
-
-Loop % input.Length()-1
+Sess:
+Loop % input.Length()
 {
 	row:= input[A_Index]
 	row:= StrSplit(row, ":")
@@ -113,138 +135,180 @@ Loop % input.Length()-1
 }
 
 
-^E::ExitApp
-^P::Pause
-^S::Suspend
-
 
 
 HERE:
 {
 	
-	
-	
-	Sleep, 1000
+	Sleep, 700
 	while (!ok:=FindText(453,0,915,767,0,0,Enroll)){
 		Sleep, 10
 	}
-;MsgBox, Enroll Found
 	FindText_Left_Click(Ok,X_Adj:=0,Y_Adj:=-5,MoveBack:=0)
-	Sleep, 1000
+	Sleep, 700
 	while (!ok:=FindText(453,0,915,767,0,0,Log_In)){
 		Sleep, 10	
 	}
-;MsgBox, Log_In Found
 	FindText_Left_Click(Ok,X_Adj:=0,Y_Adj:=0,MoveBack:=0)
-	Sleep, 1500
-	while (!ok:=FindText(453,0,915,767,0,0,Mob)){
+	if (ok:=FindText(453,0,915,767,0,0,Log_In)){
+		Sleep, 10	
+	}
+	FindText_Left_Click(Ok,X_Adj:=0,Y_Adj:=0,MoveBack:=0)
+	Sleep, 300
+	while (!ok:=FindText(453,0,915,767,0,0,MobNO)){
 		Sleep, 10
 	}
-;MsgBox, Mob Found
-	FindText_Left_Click(Ok,X_Adj:=0,Y_Adj:=0,MoveBack:=0)
+	FindText_Left_Click(Ok,X_Adj:=0,Y_Adj:=44,MoveBack:=0)
 	SendInput, +{Home}
-	Sleep, 1000
+	Sleep, 300
 	send, % mob_no
-	Sleep, 1000
+	Sleep, 300
 	while (!ok:=FindText(453,0,915,767,0,0,Password)){
 		Sleep, 10
 	}
 	FindText_Left_Click(Ok,X_Adj:=0,Y_Adj:=0,MoveBack:=0)
-	Sleep, 1000
+	Sleep, 300
 	Send, % pass
-	Sleep, 1000
+	Sleep, 500
 	while (!ok:=FindText(453,0,915,767,0,0,Login_Now)){
 		Sleep, 10
 	}
-;MsgBox, Login_Now Found
 	FindText_Left_Click(Ok,X_Adj:=0,Y_Adj:=0,MoveBack:=0)
-	Sleep, 1000
+	if (ok:=FindText(453,0,915,767,0,0,Login_Now)){
+		Sleep, 10
+	}
+	FindText_Left_Click(Ok,X_Adj:=0,Y_Adj:=0,MoveBack:=0)
+	;Sleep, 2000
+	;if (ok:=FindText(453,0,915,767,0,0,Opn_Ord)){
+		;Sleep, 10
+		;FileAppend,
+;(
+;[%sDated%] %name%(%Count%)-=>  %mob_no%(%N_me%) Reason: Not Booked `n
+;), %A_Desktop%\!Successfull.txt
+		;Gosub, Next
+		;return
+	;}
+	
+	Sleep, 700
 	while (!ok:=FindText(453,0,915,767,0,0,Order_Cyl)){
 		Sleep, 10
 	}
 	FindText_Left_Click(Ok,X_Adj:=0,Y_Adj:=0,MoveBack:=0)
 	
-	Sleep, 1000
+
+     Sleep, 500
+     while (ok:=FindText(453,0,915,767,0,0,Load_Scrn)){
+		Sleep, 10
+	}
+	Sleep 500
+	while (ok:=FindText(453,0,915,767,0,0,Load)){
+		Sleep, 10
+	}
 	while (!ok:=FindText(453,0,915,767,0,0,Order_Now)){
 		Sleep, 10
 	}
-;MsgBox, Order_Now Found
-	Sleep, 1000
+	Sleep, 700
 	FindText_Left_Click(Ok,X_Adj:=0,Y_Adj:=0,MoveBack:=0)
-	Sleep, 2000
-	;MsgBox, Clicking Again
-	FindText_Left_Click(Ok,X_Adj:=0,Y_Adj:=0,MoveBack:=0)
+	Sleep, 700
+	FindText_Left_Click(Ok,X_Adj:=15,Y_Adj:=0,MoveBack:=0)
 	
-	;================== Click Back
-	Waiat:= A_Sec + 5
-	while (A_Sec < Waiat){
-		if ok:=FindText(519,232,150000,150000,0,0,HomePage){
-			FindText_Left_Click(Ok,X_Adj:=0,Y_Adj:=0,1)
-			FileAppend,
-(
-Date: %sDated% File_Name: %name%(%Count%) Mobile_No: %mob_no%(%N_me%)✔ Reason: ✔ `n
-), %A_Desktop%\Book Log.txt
-			
-			Gosub, Next
-			return
-		}
-		
+	while (ok:=FindText(453,0,915,767,0,0,load2)){
+		Sleep, 10
 	}
-	if ok:=FindText(519,232,150000,150000,0,0,Back)
+	
+	Sleep, 2500
+	if (ok:=FindText(453,0,915,767,0,0,HomePage)){
+		Sleep, 10
+		
 		FindText_Left_Click(Ok,X_Adj:=0,Y_Adj:=0,1)
-	
-	Next:
-	Sleep, 1000
-	while (!ok:=FindText(453,0,915,767,0,0,Tripple)){
-		Sleep, 10
-	}
-;MsgBox, Tripple Found
-	FindText_Left_Click(Ok,X_Adj:=0,Y_Adj:=0,0)
-	Sleep, 1000
-	while (!ok:=FindText(453,0,915,767,0,0,Log_Out)){
-		Sleep, 10
-	}
-;MsgBox, Log_Out Found
-	FindText_Left_Click(Ok,X_Adj:=0,Y_Adj:=0,0)
-	Sleep, 1000
-	while (!ok:=FindText(453,0,915,767,0,0,LogOut_Pop)){
-		Sleep, 10
-	}
-;MsgBox, LogOut_Pop Found
-	FindText_Left_Click(Ok,X_Adj:=0,Y_Adj:=0,0)
-	Sleep, 1000
-	return
-	Click_Back:
-	{
 		
-		
-		Sleep, 100
-		while (!ok:=FindText(453,0,915,767,0,0,Back)){
-			Sleep, 10
-			;ToolTip, Searching Back Button
-		}
-	;MsgBox, Found Back
-		FindText_Left_Click(Ok,X_Adj:=0,Y_Adj:=0,0)
-		FileAppend,
-(
-Date: %sDated% File_Name: %name%(%Count%) Mobile_No: %mob_no%(%N_me%)✖ Reason: ✖  `n
-), %A_Desktop%\Book Log.txt
-	     Goto, Next
-		
+		;FileAppend,
+	;(
+;[%sDated%] %name%(%Count%)-=>  %mob_no%(%N_me%) Reason: Booked `n
+;), %A_Desktop%\Successfull.txt
+		Goto, Next
 		return
-	}
-	
-	
+		}
+		
+		
+	Sleep, 500
+	while (!ok:=FindText(453,0,915,767,0,0,Back)){
+		Sleep, 10
 }
+FindText_Left_Click(Ok,X_Adj:=0,Y_Adj:=0,1)
+
+;FileAppend,
+;(
+;[%sDated%] %name%(%Count%)-=>  %mob_no%(%N_me%) Reason: Not Booked `n
+;), %A_Desktop%\!Successfull.txt
+
+while (ok:=FindText(453,0,915,767,0,0,load2)){
+	Sleep, 10
+}
+
+	if (ok:=FindText(453,0,915,767,0,0,Back)){
+		Sleep, 10
+
+FindText_Left_Click(Ok,X_Adj:=0,Y_Adj:=0,1)
+}
+
+/*
+		while (A_Sec < WaitTime){
+			ToolTip, Home Page Finding
+			if (ok:=FindText(453,0,915,767,0,0,HomePage)){
+				
+				FindText_Left_Click(Ok,X_Adj:=0,Y_Adj:=0,1)
+				FileAppend,
+(
+[%sDated%] %name%(%Count%)-=>  %mob_no%(%N_me%) Reason: Booked `n
+), %A_Desktop%\Successfull.txt
+				
+				Gosub, Next
+				return
+			}
+			
+			
+		}
+	*/
+	
+	
+	
+	
+	
+
+Next:
+Sleep, 1000
+while (!ok:=FindText(453,0,915,767,0,0,Tripple)){
+		Sleep, 10
+}
+FindText_Left_Click(Ok,X_Adj:=0,Y_Adj:=0,0)
+Sleep, 700
+while (!ok:=FindText(453,0,915,767,0,0,Log_Out)){
+		Sleep, 10
+	}
+	FindText_Left_Click(Ok,X_Adj:=0,Y_Adj:=0,0)
+	Sleep 200
+	if (ok:=FindText(453,0,915,767,0,0,Log_Out)){
+		Sleep, 10
+
+     FindText_Left_Click(Ok,X_Adj:=0,Y_Adj:=0,0)
+	}
+     Sleep, 200
+     while (!ok:=FindText(453,0,915,767,0,0,LogOut_Pop)){
+		Sleep, 10
+	}
+	FindText_Left_Click(Ok,X_Adj:=0,Y_Adj:=0,0)
 	return
+}
+return
 
-
-
-
-
-
-
-
+;^F::
+;FileAppend,  DEVICE:- LD Player`nSettings:`n{`nMode: Mobile`nResolution: 720x1280 (dpi 320)`nCPU: 4 Cores`nRAM: 2048M`n}, %A_Desktop%/Emulator's Details.txt
+;MsgBox, Check your desktop  for emulator's details
+;return
+^E::ExitApp
+^P::Pause
+^S::Suspend
 
 
 
@@ -264,89 +328,89 @@ Date: %sDated% File_Name: %name%(%Count%) Mobile_No: %mob_no%(%N_me%)✖ Reason:
 
 FindText(x,y,w,h,err1,err0,text)
 {
-	xywh2xywh(x-w,y-h,2*w+1,2*h+1,x,y,w,h)
-	if (w<1 or h<1)
-		return, 0
-	bch:=A_BatchLines
-	SetBatchLines, -1
+		xywh2xywh(x-w,y-h,2*w+1,2*h+1,x,y,w,h)
+		if (w<1 or h<1)
+			return, 0
+		bch:=A_BatchLines
+		SetBatchLines, -1
   ;--------------------------------------
-	GetBitsFromScreen(x,y,w,h,Scan0,Stride,bits)
+		GetBitsFromScreen(x,y,w,h,Scan0,Stride,bits)
   ;--------------------------------------
-	sx:=0, sy:=0, sw:=w, sh:=h, arr:=[]
-	Loop, 2 {
-		Loop, Parse, text, |
-		{
-			v:=A_LoopField
-			IfNotInString, v, $, Continue
-				Comment:="", e1:=err1, e0:=err0
+		sx:=0, sy:=0, sw:=w, sh:=h, arr:=[]
+		Loop, 2 {
+			Loop, Parse, text, |
+			{
+				v:=A_LoopField
+				IfNotInString, v, $, Continue
+					Comment:="", e1:=err1, e0:=err0
     ; You Can Add Comment Text within The <>
-			if RegExMatch(v,"<([^>]*)>",r)
-				v:=StrReplace(v,r), Comment:=Trim(r1)
+				if RegExMatch(v,"<([^>]*)>",r)
+					v:=StrReplace(v,r), Comment:=Trim(r1)
     ; You can Add two fault-tolerant in the [], separated by commas
-			if RegExMatch(v,"\[([^\]]*)]",r)
-			{
-				v:=StrReplace(v,r), r1.=","
-				StringSplit, r, r1, `,
-				e1:=r1, e0:=r2
-			}
-			StringSplit, r, v, $
-			color:=r1, v:=r2
-			StringSplit, r, v, .
-			w1:=r1, v:=base64tobit(r2), h1:=StrLen(v)//w1
-			if (r0<2 or h1<1 or w1>sw or h1>sh or StrLen(v)!=w1*h1)
-				Continue
+				if RegExMatch(v,"\[([^\]]*)]",r)
+				{
+					v:=StrReplace(v,r), r1.=","
+					StringSplit, r, r1, `,
+					e1:=r1, e0:=r2
+				}
+				StringSplit, r, v, $
+				color:=r1, v:=r2
+				StringSplit, r, v, .
+				w1:=r1, v:=base64tobit(r2), h1:=StrLen(v)//w1
+				if (r0<2 or h1<1 or w1>sw or h1>sh or StrLen(v)!=w1*h1)
+					Continue
     ;--------------------------------------------
-			if InStr(color,"-")
-			{
-				r:=e1, e1:=e0, e0:=r, v:=StrReplace(v,"1","_")
-				v:=StrReplace(StrReplace(v,"0","1"),"_","0")
-			}
-			mode:=InStr(color,"*") ? 1:0
-			color:=RegExReplace(color,"[*\-]") . "@"
-			StringSplit, r, color, @
-			color:=Round(r1), n:=Round(r2,2)+(!r2)
-			n:=Floor(255*3*(1-n)), k:=StrLen(v)*4
-			VarSetCapacity(ss, sw*sh, Asc("0"))
-			VarSetCapacity(s1, k, 0), VarSetCapacity(s0, k, 0)
-			VarSetCapacity(rx, 8, 0), VarSetCapacity(ry, 8, 0)
-			len1:=len0:=0, j:=sw-w1+1, i:=-j
-			ListLines, Off
-			Loop, Parse, v
-			{
-				i:=Mod(A_Index,w1)=1 ? i+j : i+1
-				if A_LoopField
-					NumPut(i, s1, 4*len1++, "int")
-				else
-					NumPut(i, s0, 4*len0++, "int")
-			}
-			ListLines, On
-			e1:=Round(len1*e1), e0:=Round(len0*e0)
+				if InStr(color,"-")
+				{
+					r:=e1, e1:=e0, e0:=r, v:=StrReplace(v,"1","_")
+					v:=StrReplace(StrReplace(v,"0","1"),"_","0")
+				}
+				mode:=InStr(color,"*") ? 1:0
+				color:=RegExReplace(color,"[*\-]") . "@"
+				StringSplit, r, color, @
+				color:=Round(r1), n:=Round(r2,2)+(!r2)
+				n:=Floor(255*3*(1-n)), k:=StrLen(v)*4
+				VarSetCapacity(ss, sw*sh, Asc("0"))
+				VarSetCapacity(s1, k, 0), VarSetCapacity(s0, k, 0)
+				VarSetCapacity(rx, 8, 0), VarSetCapacity(ry, 8, 0)
+				len1:=len0:=0, j:=sw-w1+1, i:=-j
+				ListLines, Off
+				Loop, Parse, v
+				{
+					i:=Mod(A_Index,w1)=1 ? i+j : i+1
+					if A_LoopField
+						NumPut(i, s1, 4*len1++, "int")
+					else
+						NumPut(i, s0, 4*len0++, "int")
+				}
+				ListLines, On
+				e1:=Round(len1*e1), e0:=Round(len0*e0)
     ;--------------------------------------------
-			if PicFind(mode,color,n,Scan0,Stride,sx,sy,sw,sh
+				if PicFind(mode,color,n,Scan0,Stride,sx,sy,sw,sh
       ,ss,s1,s0,len1,len0,e1,e0,w1,h1,rx,ry)
-			{
-				rx+=x, ry+=y
-				arr.Push(rx,ry,w1,h1,Comment)
+				{
+					rx+=x, ry+=y
+					arr.Push(rx,ry,w1,h1,Comment)
+				}
 			}
+			if (arr.MaxIndex())
+				Break
+			if (A_Index=1 and err1=0 and err0=0)
+				err1:=0.05, err0:=0.05
+			else Break
 		}
-		if (arr.MaxIndex())
-			Break
-		if (A_Index=1 and err1=0 and err0=0)
-			err1:=0.05, err0:=0.05
-		else Break
+		SetBatchLines, %bch%
+		return, arr.MaxIndex() ? arr:0
 	}
-	SetBatchLines, %bch%
-	return, arr.MaxIndex() ? arr:0
-}
-
-PicFind(mode, color, n, Scan0, Stride
+	
+	PicFind(mode, color, n, Scan0, Stride
   , sx, sy, sw, sh, ByRef ss, ByRef s1, ByRef s0
   , len1, len0, err1, err0, w, h, ByRef rx, ByRef ry)
-{
-	static MyFunc
-	if !MyFunc
 	{
-		x32:="5589E583EC408B45200FAF45188B551CC1E20201D08945F"
+		static MyFunc
+		if !MyFunc
+		{
+			x32:="5589E583EC408B45200FAF45188B551CC1E20201D08945F"
     . "48B5524B80000000029D0C1E00289C28B451801D08945D8C74"
     . "5F000000000837D08000F85F00000008B450CC1E81025FF000"
     . "0008945D48B450CC1E80825FF0000008945D08B450C25FF000"
@@ -377,7 +441,7 @@ PicFind(mode, color, n, Scan0, Stride
     . "08B55208B45F801C28B45548910B801000000EB2990EB01908"
     . "345FC018B45FC3B45480F8C2DFFFFFF8345F8018B45F83B454"
     . "C0F8C11FFFFFFB800000000C9C25000"
-		x64:="554889E54883EC40894D10895518448945204C894D288B4"
+			x64:="554889E54883EC40894D10895518448945204C894D288B4"
     . "5400FAF45308B5538C1E20201D08945F48B5548B8000000002"
     . "9D0C1E00289C28B453001D08945D8C745F000000000837D100"
     . "00F85000100008B4518C1E81025FF0000008945D48B4518C1E"
@@ -412,142 +476,142 @@ PicFind(mode, color, n, Scan0, Stride
     . "B45F801C2488B85A80000008910B801000000EB2F90EB01908"
     . "345FC018B45FC3B85900000000F8C05FFFFFF8345F8018B45F"
     . "83B85980000000F8CE6FEFFFFB8000000004883C4405DC390"
-		MCode(MyFunc, A_PtrSize=8 ? x64:x32)
-	}
-	return, DllCall(&MyFunc, "int",mode
+			MCode(MyFunc, A_PtrSize=8 ? x64:x32)
+		}
+		return, DllCall(&MyFunc, "int",mode
     , "uint",color, "int",n, "ptr",Scan0, "int",Stride
     , "int",sx, "int",sy, "int",sw, "int",sh
     , "ptr",&ss, "ptr",&s1, "ptr",&s0
     , "int",len1, "int",len0, "int",err1, "int",err0
     , "int",w, "int",h, "int*",rx, "int*",ry)
-}
-
-xywh2xywh(x1,y1,w1,h1,ByRef x,ByRef y,ByRef w,ByRef h)
-{
-	SysGet, zx, 76
-	SysGet, zy, 77
-	SysGet, zw, 78
-	SysGet, zh, 79
-	left:=x1, right:=x1+w1-1, up:=y1, down:=y1+h1-1
-	left:=left<zx ? zx:left, right:=right>zx+zw-1 ? zx+zw-1:right
-	up:=up<zy ? zy:up, down:=down>zy+zh-1 ? zy+zh-1:down
-	x:=left, y:=up, w:=right-left+1, h:=down-up+1
-}
-
-GetBitsFromScreen(x,y,w,h,ByRef Scan0,ByRef Stride,ByRef bits)
-{
-	VarSetCapacity(bits,w*h*4,0), bpp:=32
-	Scan0:=&bits, Stride:=((w*bpp+31)//32)*4
-	Ptr:=A_PtrSize ? "UPtr" : "UInt", PtrP:=Ptr . "*"
-	win:=DllCall("GetDesktopWindow", Ptr)
-	hDC:=DllCall("GetWindowDC", Ptr,win, Ptr)
-	mDC:=DllCall("CreateCompatibleDC", Ptr,hDC, Ptr)
+	}
+	
+	xywh2xywh(x1,y1,w1,h1,ByRef x,ByRef y,ByRef w,ByRef h)
+	{
+		SysGet, zx, 76
+		SysGet, zy, 77
+		SysGet, zw, 78
+		SysGet, zh, 79
+		left:=x1, right:=x1+w1-1, up:=y1, down:=y1+h1-1
+		left:=left<zx ? zx:left, right:=right>zx+zw-1 ? zx+zw-1:right
+		up:=up<zy ? zy:up, down:=down>zy+zh-1 ? zy+zh-1:down
+		x:=left, y:=up, w:=right-left+1, h:=down-up+1
+	}
+	
+	GetBitsFromScreen(x,y,w,h,ByRef Scan0,ByRef Stride,ByRef bits)
+	{
+		VarSetCapacity(bits,w*h*4,0), bpp:=32
+		Scan0:=&bits, Stride:=((w*bpp+31)//32)*4
+		Ptr:=A_PtrSize ? "UPtr" : "UInt", PtrP:=Ptr . "*"
+		win:=DllCall("GetDesktopWindow", Ptr)
+		hDC:=DllCall("GetWindowDC", Ptr,win, Ptr)
+		mDC:=DllCall("CreateCompatibleDC", Ptr,hDC, Ptr)
   ;-------------------------
-	VarSetCapacity(bi, 40, 0), NumPut(40, bi, 0, "int")
-	NumPut(w, bi, 4, "int"), NumPut(-h, bi, 8, "int")
-	NumPut(1, bi, 12, "short"), NumPut(bpp, bi, 14, "short")
+		VarSetCapacity(bi, 40, 0), NumPut(40, bi, 0, "int")
+		NumPut(w, bi, 4, "int"), NumPut(-h, bi, 8, "int")
+		NumPut(1, bi, 12, "short"), NumPut(bpp, bi, 14, "short")
   ;-------------------------
-	if hBM:=DllCall("CreateDIBSection", Ptr,mDC, Ptr,&bi
+		if hBM:=DllCall("CreateDIBSection", Ptr,mDC, Ptr,&bi
     , "int",0, PtrP,ppvBits, Ptr,0, "int",0, Ptr)
-	{
-		oBM:=DllCall("SelectObject", Ptr,mDC, Ptr,hBM, Ptr)
-		DllCall("BitBlt", Ptr,mDC, "int",0, "int",0, "int",w, "int",h
+		{
+			oBM:=DllCall("SelectObject", Ptr,mDC, Ptr,hBM, Ptr)
+			DllCall("BitBlt", Ptr,mDC, "int",0, "int",0, "int",w, "int",h
       , Ptr,hDC, "int",x, "int",y, "uint",0x00CC0020|0x40000000)
-		DllCall("RtlMoveMemory","ptr",Scan0,"ptr",ppvBits,"ptr",Stride*h)
-		DllCall("SelectObject", Ptr,mDC, Ptr,oBM)
-		DllCall("DeleteObject", Ptr,hBM)
+			DllCall("RtlMoveMemory","ptr",Scan0,"ptr",ppvBits,"ptr",Stride*h)
+			DllCall("SelectObject", Ptr,mDC, Ptr,oBM)
+			DllCall("DeleteObject", Ptr,hBM)
+		}
+		DllCall("DeleteDC", Ptr,mDC)
+		DllCall("ReleaseDC", Ptr,win, Ptr,hDC)
 	}
-	DllCall("DeleteDC", Ptr,mDC)
-	DllCall("ReleaseDC", Ptr,win, Ptr,hDC)
-}
-
-base64tobit(s)
-{
-	ListLines, Off
-	Chars:="0123456789+/ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	
+	base64tobit(s)
+	{
+		ListLines, Off
+		Chars:="0123456789+/ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     . "abcdefghijklmnopqrstuvwxyz"
-	SetFormat, IntegerFast, d
-	StringCaseSense, On
-	Loop, Parse, Chars
-	{
-		i:=A_Index-1, v:=(i>>5&1) . (i>>4&1)
+		SetFormat, IntegerFast, d
+		StringCaseSense, On
+		Loop, Parse, Chars
+		{
+			i:=A_Index-1, v:=(i>>5&1) . (i>>4&1)
       . (i>>3&1) . (i>>2&1) . (i>>1&1) . (i&1)
-		s:=StrReplace(s,A_LoopField,v)
-	}
-	StringCaseSense, Off
-	s:=SubStr(s,1,InStr(s,"1",0,0)-1)
-	s:=RegExReplace(s,"[^01]+")
-	ListLines, On
-	return, s
-}
-
-bit2base64(s)
-{
-	ListLines, Off
-	s:=RegExReplace(s,"[^01]+")
-	s.=SubStr("100000",1,6-Mod(StrLen(s),6))
-	s:=RegExReplace(s,".{6}","|$0")
-	Chars:="0123456789+/ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    . "abcdefghijklmnopqrstuvwxyz"
-	SetFormat, IntegerFast, d
-	Loop, Parse, Chars
-	{
-		i:=A_Index-1, v:="|" . (i>>5&1) . (i>>4&1)
-      . (i>>3&1) . (i>>2&1) . (i>>1&1) . (i&1)
-		s:=StrReplace(s,v,A_LoopField)
-	}
-	ListLines, On
-	return, s
-}
-
-ASCII(s)
-{
-	if RegExMatch(s,"(\d+)\.([\w+/]{3,})",r)
-	{
-		s:=RegExReplace(base64tobit(r2),".{" r1 "}","$0`n")
-		s:=StrReplace(StrReplace(s,"0","_"),"1","0")
-	}
-	else s=
+			s:=StrReplace(s,A_LoopField,v)
+		}
+		StringCaseSense, Off
+		s:=SubStr(s,1,InStr(s,"1",0,0)-1)
+		s:=RegExReplace(s,"[^01]+")
+		ListLines, On
 		return, s
-}
-
-MCode(ByRef code, hex)
-{
-	ListLines, Off
-	bch:=A_BatchLines
-	SetBatchLines, -1
-	VarSetCapacity(code, StrLen(hex)//2)
-	Loop, % StrLen(hex)//2
-		NumPut("0x" . SubStr(hex,2*A_Index-1,2), code, A_Index-1, "char")
-	Ptr:=A_PtrSize ? "UPtr" : "UInt"
-	DllCall("VirtualProtect", Ptr,&code, Ptr
+	}
+	
+	bit2base64(s)
+	{
+		ListLines, Off
+		s:=RegExReplace(s,"[^01]+")
+		s.=SubStr("100000",1,6-Mod(StrLen(s),6))
+		s:=RegExReplace(s,".{6}","|$0")
+		Chars:="0123456789+/ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    . "abcdefghijklmnopqrstuvwxyz"
+		SetFormat, IntegerFast, d
+		Loop, Parse, Chars
+		{
+			i:=A_Index-1, v:="|" . (i>>5&1) . (i>>4&1)
+      . (i>>3&1) . (i>>2&1) . (i>>1&1) . (i&1)
+			s:=StrReplace(s,v,A_LoopField)
+		}
+		ListLines, On
+		return, s
+	}
+	
+	ASCII(s)
+	{
+		if RegExMatch(s,"(\d+)\.([\w+/]{3,})",r)
+		{
+			s:=RegExReplace(base64tobit(r2),".{" r1 "}","$0`n")
+			s:=StrReplace(StrReplace(s,"0","_"),"1","0")
+		}
+		else s=
+			return, s
+	}
+	
+	MCode(ByRef code, hex)
+	{
+		ListLines, Off
+		bch:=A_BatchLines
+		SetBatchLines, -1
+		VarSetCapacity(code, StrLen(hex)//2)
+		Loop, % StrLen(hex)//2
+			NumPut("0x" . SubStr(hex,2*A_Index-1,2), code, A_Index-1, "char")
+		Ptr:=A_PtrSize ? "UPtr" : "UInt"
+		DllCall("VirtualProtect", Ptr,&code, Ptr
     ,VarSetCapacity(code), "uint",0x40, Ptr . "*",0)
-	SetBatchLines, %bch%
-	ListLines, On
-}
-
+		SetBatchLines, %bch%
+		ListLines, On
+	}
+	
 ; You can put the text library at the beginning of the script,
 ; and Use Pic(Text,1) to add the text library to Pic()'s Lib,
 ; Use Pic("comment1|comment2|...") to get text images from Lib
-Pic(comments, add_to_Lib=0) {
-	static Lib:=[]
-	if (add_to_Lib)
-	{
-		re:="<([^>]*)>[^$]+\$\d+\.[\w+/]{3,}"
-		Loop, Parse, comments, |
-			if RegExMatch(A_LoopField,re,r)
-				Lib[Trim(r1)]:=r
+	Pic(comments, add_to_Lib=0) {
+		static Lib:=[]
+		if (add_to_Lib)
+		{
+			re:="<([^>]*)>[^$]+\$\d+\.[\w+/]{3,}"
+			Loop, Parse, comments, |
+				if RegExMatch(A_LoopField,re,r)
+					Lib[Trim(r1)]:=r
+		}
+		else
+		{
+			text:=""
+			Loop, Parse, comments, |
+				text.="|" . Lib[Trim(A_LoopField)]
+			return, text
+		}
 	}
-	else
-	{
-		text:=""
-		Loop, Parse, comments, |
-			text.="|" . Lib[Trim(A_LoopField)]
-		return, text
-	}
-}
-
-
+	
+	*/
 ;================= The End =================
 
 ;***********Custom functions by Joe Glines  http://the-automator.com*******************
