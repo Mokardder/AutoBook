@@ -61,6 +61,9 @@ GuiClose:
 MsgBox, Update is Mandatory to run Script
 return
 
+Start:
+;=============================================================
+
 
 
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
